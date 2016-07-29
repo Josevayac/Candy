@@ -1,0 +1,71 @@
+﻿<style>
+
+body {
+  background-color: #313738;
+}
+
+#ele {
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+table {
+  margin: 0 auto;
+}
+
+td {
+  width: 40px;
+  height: 40px;
+  text-align: left;
+  color: #757d5f;
+  font-size: 8px;
+  border: solid 1px #313738;
+  background-color: #07889B;
+  border-radius: 4px;
+}
+td:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+</style>
+
+
+
+
+<div id="content">
+
+     @*@Html.Partial("PartialView/_PartialMoves")*@   
+    
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $.post("/api/partida", { id: 'test' })
+                    .done(function (data) {
+                        alert(data);
+                    });
+
+
+
+            $("#crear").click(function () {
+                event.preventDefault();
+                // Send an AJAX request
+                $.post("@Url.Action("CreateCommentPlace", "places")", { place: $("#place").val(), comment: $("#comment").val() })
+                    .done(function( data ) {
+                        $('#contenido').html("");
+                        $('#contenido').html(data);
+                        $('#comment').val("");
+                    });
+            });
+        });
+
+        function Clean() {
+            $('#comment').val("");
+
+        }
+
+</script>
